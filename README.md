@@ -48,7 +48,7 @@ Seluruh proses (eksplorasi data → pemodelan → evaluasi → inferensi data ba
 9. **Ujian akhir** di data uji, lengkap dengan classification report, confusion matrix, kurva ROC dan Precision-Recall.
 10. **Faktor berpengaruh** menggunakan *Permutation Importance*.
 11. **Simpan model** (pipeline + threshold + daftar kolom) ke `model_attrition.joblib`.
-12. **Inferensi data baru**: validasi data, prediksi batch, evaluasi opsional, simpan hasil, dan uji satu karyawan secara manual.
+12. **Inferensi data baru**: validasi data, prediksi batch, evaluasi opsional, simpan hasil, uji satu karyawan secara manual, dan input data karyawan secara interaktif lewat `input()`.
 
 ---
 
@@ -140,7 +140,25 @@ Bagian 12 notebook **berdiri sendiri**: hanya butuh `model_attrition.joblib` dan
 | `Prediksi` | Keputusan berdasarkan threshold (mis. "Berisiko keluar") |
 | `Tingkat_Risiko` | **Tinggi**: di atas threshold. **Sedang**: antara setengah threshold dan threshold (perlu dipantau). **Rendah**: di bawahnya |
 
-Untuk satu karyawan, gunakan fungsi `prediksi_attrition(dict_data)`.
+Untuk satu karyawan, ada dua cara:
+
+- **Lewat dictionary:** `prediksi_attrition(dict_data)`. Semua kolom yang dibutuhkan model harus ada di dictionary.
+- **Lewat input interaktif (bagian 12.7):** jalankan `prediksi_interaktif()`. Notebook menanyakan 15 kolom satu per satu, lalu menampilkan peluang keluar, keputusan, dan tingkat risiko. Setelah itu notebook menawarkan untuk memprediksi karyawan lain.
+
+```python
+data_input, hasil_input = prediksi_interaktif()
+```
+
+Beberapa hal yang dilakukan otomatis oleh input interaktif:
+
+| Fitur | Penjelasan |
+|---|---|
+| Daftar kolom dinamis | Diambil dari `model_attrition.joblib`, jadi tetap benar jika seleksi fitur berubah |
+| Menu untuk kolom kategori | Pilih dengan nomor atau ketik teksnya (mis. `OverTime`, `JobRole`) |
+| Validasi angka | Harus angka, bulat jika memang bulat, tidak negatif; kolom skala (mis. `JobSatisfaction`) dijaga di 1-4 |
+| Rentang data latih | Ditampilkan sebagai panduan. Angka di luar rentang tetap diterima, tetapi muncul peringatan saat prediksi |
+
+Fungsi `input_karyawan()` juga dapat dipakai sendiri untuk mengumpulkan data satu karyawan, misalnya `prediksi_attrition(input_karyawan())`.
 
 ---
 
