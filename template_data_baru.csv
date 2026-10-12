@@ -1,0 +1,6 @@
+Age,BusinessTravel,DistanceFromHome,EducationField,EnvironmentSatisfaction,Gender,JobInvolvement,JobRole,JobSatisfaction,MaritalStatus,NumCompaniesWorked,OverTime,TrainingTimesLastYear,WorkLifeBalance,YearsWithCurrManager
+24,Non-Travel,13,Life Sciences,4,Female,3,Sales Representative,2,Married,1,No,2,3,0
+44,Travel_Rarely,2,Life Sciences,1,Female,4,Research Scientist,4,Married,1,No,5,3,7
+31,Travel_Rarely,7,Life Sciences,3,Male,2,Manager,4,Divorced,9,No,3,2,1
+44,Travel_Rarely,4,Life Sciences,3,Male,4,Manager,1,Divorced,1,No,4,2,13
+36,Travel_Rarely,9,Medical,4,Male,2,Research Scientist,3,Married,0,Yes,0,2,0
